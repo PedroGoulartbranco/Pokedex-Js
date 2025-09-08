@@ -30,6 +30,7 @@ function carregar_todos_pokemons() {
                 div.style.height = "30vh"
                 div.style.margin = "2vh"
                 div.style.borderRadius = "10px"
+                div.style.textAlign = "center"
                 fetch(pokemon.url)
                 
                     .then(response => response.json())
@@ -38,7 +39,7 @@ function carregar_todos_pokemons() {
 
                         /* div.textContent = data.sprites.front_default //Escreve dentro da div
                         div_pokemon.appendChild(div) //Adiciona dentro da div princiapl */
-                        div.innerHTML = `<h4><img src="${data.sprites.front_default}" width="90%" height= "90%";></h4> <br> <h5>${pokemon.name}</h5>`;
+                        div.innerHTML = `<h4><img src="${data.sprites.front_default}" width="75%" height= "75%";></h4> <br> <h5> #${data.id} <br> ${pokemon.name}</h5>`;
                         div_pokemon.appendChild(div)
                     })
 
