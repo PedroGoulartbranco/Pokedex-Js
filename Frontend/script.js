@@ -25,6 +25,7 @@ function carregar_todos_pokemons() {
             div_pokemon.innerHTML = '' //Reseta a div
             lista_pokemons.forEach(pokemon => {
                 const div = document.createElement("div") //Cria uma div para colocar o pokemon denteo
+                div.style.backgroundColor = "white"
                 fetch(pokemon.url)
                 
                     .then(response => response.json())
@@ -33,14 +34,12 @@ function carregar_todos_pokemons() {
 
                         /* div.textContent = data.sprites.front_default //Escreve dentro da div
                         div_pokemon.appendChild(div) //Adiciona dentro da div princiapl */
-                        div.innerHTML = `<h4><img src="${data.sprites.front_default}"></h4>`;
+                        div.innerHTML = `<h4><img src="${data.sprites.front_default}"></h4> <br> <h5>${pokemon.name}</h5>`;
                         div_pokemon.appendChild(div)
                     })
 
                 
                     .catch(error => console.log(error));
-                    div.textContent = pokemon.name;
-                    div_pokemon.appendChild(div)
             });
         })
     
