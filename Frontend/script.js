@@ -16,6 +16,9 @@ function pesquisa_pokemon(event) {
 
 function carregar_todos_pokemons() {
     const div_pokemon = document.getElementById("pokemons_div"); //Pega a div que vai colocar os pokemons
+    div_pokemon.style.display = "flex"
+    div_pokemon.style.flexWrap = "wrap"; // permite quebrar a linha
+    div_pokemon.style.justifyContent = "center"; // centraliza os cards
     fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
     
         .then(response => response.json())
@@ -39,7 +42,7 @@ function carregar_todos_pokemons() {
 
                         /* div.textContent = data.sprites.front_default //Escreve dentro da div
                         div_pokemon.appendChild(div) //Adiciona dentro da div princiapl */
-                        div.innerHTML = `<h4><img src="${data.sprites.front_default}" width="75%" height= "75%";></h4> <br> <h5> #${data.id} <br> ${pokemon.name}</h5>`;
+                        div.innerHTML = `<h4><img src="${data.sprites.front_default}" width="75%" height= "75%"></h4> <br> <h5> #${data.id} <br> ${pokemon.name}</h5>`;
                         div_pokemon.appendChild(div)
                     })
 
