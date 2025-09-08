@@ -6,7 +6,7 @@ const port = 3000;
 
 app.use(express.static('Frontend'));
 
-app.get('/', (req, res) => {
+app.get('/pokemon/:nome', (req, res) => {
   res.send('Olá, mundo!'); 
 });
 

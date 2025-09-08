@@ -12,12 +12,16 @@
     <h1 id="titulo_principal">Pokedex Js</h1>
     <div id="abaixar_pesquisa">
         <div id="div_pesquisa">
-            <form class="mb-3">
+            <form class="mb-3" onsubmit="pesquisa_pokemon(event)">
                 <input type="text" class="form-control" id="nome_pokemon" placeholder="Digite o nome do Pokemon">
                 <button type="submit" class="btn btn-primary">Pesquisar</button>
             </form>
         </div>
     </div>
+    <div id="pokemons_div">
+
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>
