@@ -35,6 +35,7 @@ function carregar_todos_pokemons() {
                 div.style.margin = "2vh"
                 div.style.borderRadius = "10px"
                 div.style.textAlign = "center"
+                div.style.padding = " "
                 div.style.paddingTop = "1vh"
                 fetch(pokemon.url)
 
