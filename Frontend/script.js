@@ -104,7 +104,19 @@ function clicou_no_pokemon(nome_pokemon) {
             const vida = data.stats.find(s => s.stat.name === "hp").base_stat;
             const ataque = data.stats.find(s => s.stat.name === "attack").base_stat;
             const defesa = data.stats.find(s => s.stat.name === "defense").base_stat;
-            alert(ataque)
+            const velocidade = data.stats.find(s => s.stat.name === "speed").base_stat;
+            const ataque_especial = data.stats.find(s => s.stat.name === "special-attack").base_stat;
+            const defesa_especial = data.stats.find(s => s.stat.name === "special-defense").base_stat;
+            
+            let div = document.createElement("div");
+            div.style.backgroundColor = "white"
+            div.style.width = "20vh"
+            div.style.height = "40vh"
+            div.style.position = "fixed";
+            div.style.top = "50%";
+            div.style.left = "50%";
+            document.body.overlay.style.backgroundColor = "rgba(0,0,0,0.5)";
+            document.body.appendChild(div)
         })
     
         .catch(error => console.log(error));
