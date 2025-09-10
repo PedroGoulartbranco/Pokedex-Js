@@ -1,41 +1,44 @@
+let lista_todos_pokemons = []
+
 function pesquisa_pokemon(event) {
     event.preventDefault();
 
     let nome_pokemon = event.target.nome_pokemon.value.toLowerCase();
+    const div_pokemon = document.getElementById("pokemons_div");
+
 
     fetch(`https://pokeapi.co/api/v2/pokemon/${nome_pokemon}`)
     
         .then(response => response.json())
     
         .then(data => {
-            const div_pokemon = document.getElementById("pokemons_div");
-            div_pokemon.innerHTML = ""
-            div_pokemon.style.display = "flex"
-            div_pokemon.style.flexWrap = "wrap"; 
-            div_pokemon.style.justifyContent = "center"; 
-            const div = document.createElement("div") //Cria uma div para colocar o pokemon denteo
-                div.style.backgroundColor = "white"
-                div.style.width = "29vh"
-                div.style.height = "29vh"
-                div.style.margin = "2vh"
-                div.style.borderRadius = "10px"
-                div.style.textAlign = "center"
-                div.style.paddingTop = "1vh"
-                div.style.transition = "all 0.3s"; // deixa suave
-                div.addEventListener("mouseenter", function() {
-                    div.style.transform = "translateY(-10px)"; // sobe 10px
-                })
-                div.addEventListener("mouseleave", function() {
-                    div.style.transform = "translateY(0)"; // volta ao normal
-                })
-                div.innerHTML = `<h4><img src="${data.sprites.other["official-artwork"].front_default
-                    }" width="60%" height= "60%"></h4> <br> <h5> #${data.id} <br> ${data.name}</h5>`;
-                div_pokemon.appendChild(div)
-            
-            console.log("tes")
+            div_pokemon.innerHTML = "";
+            div_pokemon.style.display = "flex";
+            div_pokemon.style.flexWrap = "wrap";
+            div_pokemon.style.justifyContent = "center";
+
+
+            const div = document.createElement("div");
+            div.style.backgroundColor = "white";
+            div.style.width = "29vh";
+            div.style.height = "29vh";
+            div.style.margin = "2vh";
+            div.style.borderRadius = "10px";
+            div.style.textAlign = "center";
+            div.style.paddingTop = "1vh";
+            div.style.transition = "all 0.3s";
+            div.addEventListener("mouseenter", function() {
+                div.style.transform = "translateY(-10px)";
+            });
+            div.addEventListener("mouseleave", function() {
+                div.style.transform = "translateY(0)";
+            });
+            div.innerHTML = `<h4><img src="${data.sprites.other["official-artwork"].front_default}" width="60%" height="60%"></h4> <br> <h5> #${data.id} <br> ${data.name}</h5>`;
+            div_pokemon.appendChild(div);
+
         })
     
-        .catch(error => console.log(error));
+        .catch(error => carregar_todos_pokemons());
 }
 
 function carregar_todos_pokemons() {
@@ -43,11 +46,12 @@ function carregar_todos_pokemons() {
     div_pokemon.style.display = "flex"
     div_pokemon.style.flexWrap = "wrap"; // permite quebrar a linha
     div_pokemon.style.justifyContent = "center"; // centraliza os cards
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=251')
     
         .then(response => response.json())
     
         .then(data => {
+            lista_todos_pokemons.push(data)
             const lista_pokemons = data.results; //Coloca todos os dados dentro de uma lista
             div_pokemon.innerHTML = '' //Reseta a div
             lista_pokemons.forEach(pokemon => {
@@ -76,7 +80,9 @@ function carregar_todos_pokemons() {
                         div_pokemon.appendChild(div) //Adiciona dentro da div princiapl */
                         div.innerHTML = `<h4><img src="${data.sprites.other["official-artwork"].front_default
                     }" width="60%" height= "60%"></h4> <br> <h5> #${data.id} <br> ${pokemon.name}</h5>`;
-                        
+                        div.addEventListener("click", function() {
+                            clicou_no_pokemon(pokemon.name)
+                        })
                         div_pokemon.appendChild(div)
                     })
                 
@@ -87,5 +93,22 @@ function carregar_todos_pokemons() {
     
         .catch(error => console.log(error));
 }
+
+function clicou_no_pokemon(nome_pokemon) {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${nome_pokemon}`)
+    
+        .then(response => response.json())
+    
+        .then(data => {
+            const tipos = data.types.map(t => t.type.name).join(", ");
+            const vida = data.stats.find(s => s.stat.name === "hp").base_stat;
+            const ataque = data.stats.find(s => s.stat.name === "attack").base_stat;
+            const defesa = data.stats.find(s => s.stat.name === "defense").base_stat;
+            alert(ataque)
+        })
+    
+        .catch(error => console.log(error));
+}
+
 
 window.onload = carregar_todos_pokemons;

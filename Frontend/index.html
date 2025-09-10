@@ -13,7 +13,7 @@
     <div id="abaixar_pesquisa">
         <div id="div_pesquisa">
             <form class="mb-3" onsubmit="pesquisa_pokemon(event)">
-                <input type="text" class="form-control" id="nome_pokemon" placeholder="Digite o nome do Pokemon">
+                <input type="text" class="form-control" id="nome_pokemon" placeholder="Digite o nome do Pokemon" oninput="pesquisa_pokemon(event)">
                 <button type="submit" class="btn btn-primary">Pesquisar</button>
             </form>
         </div>
