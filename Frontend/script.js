@@ -8,7 +8,31 @@ function pesquisa_pokemon(event) {
         .then(response => response.json())
     
         .then(data => {
-            console.log(data.height)
+            const div_pokemon = document.getElementById("pokemons_div");
+            div_pokemon.innerHTML = ""
+            div_pokemon.style.display = "flex"
+            div_pokemon.style.flexWrap = "wrap"; 
+            div_pokemon.style.justifyContent = "center"; 
+            const div = document.createElement("div") //Cria uma div para colocar o pokemon denteo
+                div.style.backgroundColor = "white"
+                div.style.width = "29vh"
+                div.style.height = "29vh"
+                div.style.margin = "2vh"
+                div.style.borderRadius = "10px"
+                div.style.textAlign = "center"
+                div.style.paddingTop = "1vh"
+                div.style.transition = "all 0.3s"; // deixa suave
+                div.addEventListener("mouseenter", function() {
+                    div.style.transform = "translateY(-10px)"; // sobe 10px
+                })
+                div.addEventListener("mouseleave", function() {
+                    div.style.transform = "translateY(0)"; // volta ao normal
+                })
+                div.innerHTML = `<h4><img src="${data.sprites.other["official-artwork"].front_default
+                    }" width="60%" height= "60%"></h4> <br> <h5> #${data.id} <br> ${data.name}</h5>`;
+                div_pokemon.appendChild(div)
+            
+            console.log("tes")
         })
     
         .catch(error => console.log(error));
@@ -29,12 +53,19 @@ function carregar_todos_pokemons() {
             lista_pokemons.forEach(pokemon => {
                 const div = document.createElement("div") //Cria uma div para colocar o pokemon denteo
                 div.style.backgroundColor = "white"
-                div.style.width = "30vh"
-                div.style.height = "30vh"
+                div.style.width = "29vh"
+                div.style.height = "29vh"
                 div.style.margin = "2vh"
                 div.style.borderRadius = "10px"
                 div.style.textAlign = "center"
                 div.style.paddingTop = "1vh"
+                div.style.transition = "all 0.3s"; // deixa suave
+                div.addEventListener("mouseenter", function() {
+                    div.style.transform = "translateY(-10px)"; // sobe 10px
+                })
+                div.addEventListener("mouseleave", function() {
+                    div.style.transform = "translateY(0)"; // volta ao normal
+                })
                 fetch(pokemon.url)
                 
                     .then(response => response.json())
@@ -45,10 +76,11 @@ function carregar_todos_pokemons() {
                         div_pokemon.appendChild(div) //Adiciona dentro da div princiapl */
                         div.innerHTML = `<h4><img src="${data.sprites.other["official-artwork"].front_default
                     }" width="60%" height= "60%"></h4> <br> <h5> #${data.id} <br> ${pokemon.name}</h5>`;
+                        
                         div_pokemon.appendChild(div)
                     })
-
                 
+
                     .catch(error => console.log(error));
             });
         })
