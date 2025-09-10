@@ -115,8 +115,10 @@ function clicou_no_pokemon(nome_pokemon) {
             div.style.position = "fixed";
             div.style.top = "50%";
             div.style.left = "50%";
-            document.body.overlay.style.backgroundColor = "rgba(0,0,0,0.5)";
+     
             document.body.appendChild(div)
+
+
         })
     
         .catch(error => console.log(error));
