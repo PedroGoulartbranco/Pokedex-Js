@@ -20,8 +20,8 @@ function pesquisa_pokemon(event) {
 
             const div = document.createElement("div");
             div.style.backgroundColor = "white";
-            div.style.width = "29vh";
-            div.style.height = "29vh";
+            div.style.width = "32vh";
+            div.style.height = "32vh";
             div.style.margin = "2vh";
             div.style.borderRadius = "10px";
             div.style.textAlign = "center";
@@ -33,7 +33,7 @@ function pesquisa_pokemon(event) {
             div.addEventListener("mouseleave", function() {
                 div.style.transform = "translateY(0)";
             });
-            div.innerHTML = `<h4><img src="${data.sprites.other["official-artwork"].front_default}" width="60%" height="60%"></h4> <br> <h5> #${data.id} <br> ${data.name}</h5>`;
+            div.innerHTML = `<h4><img src="${data.sprites.other["official-artwork"].front_default}" width="60%" height="60%"></h4> <br> <h5 style="font-size: 2vh;"> #${data.id} <br> ${data.name}</h5>`;
             div_pokemon.appendChild(div);
 
         })
@@ -57,8 +57,8 @@ function carregar_todos_pokemons() {
             lista_pokemons.forEach(pokemon => {
                 const div = document.createElement("div") //Cria uma div para colocar o pokemon denteo
                 div.style.backgroundColor = "white"
-                div.style.width = "29vh"
-                div.style.height = "29vh"
+                div.style.width = "32vh"
+                div.style.height = "32vh"
                 div.style.margin = "2vh"
                 div.style.borderRadius = "10px"
                 div.style.textAlign = "center"
@@ -79,7 +79,7 @@ function carregar_todos_pokemons() {
                         /* div.textContent = data.sprites.front_default //Escreve dentro da div
                         div_pokemon.appendChild(div) //Adiciona dentro da div princiapl */
                         div.innerHTML = `<h4><img src="${data.sprites.other["official-artwork"].front_default
-                    }" width="60%" height= "60%"></h4> <br> <h5> #${data.id} <br> ${pokemon.name}</h5>`;
+                    }" width="60%" height= "60%"></h4> <br> <h4 style="font-size: 3vh; "> #${data.id} <br> ${pokemon.name}</h4>`;
                         div.addEventListener("click", function() {
                             clicou_no_pokemon(pokemon.name)
                         })
@@ -94,6 +94,8 @@ function carregar_todos_pokemons() {
         .catch(error => console.log(error));
 }
 
+
+
 function clicou_no_pokemon(nome_pokemon) {
     fetch(`https://pokeapi.co/api/v2/pokemon/${nome_pokemon}`)
     
@@ -107,14 +109,18 @@ function clicou_no_pokemon(nome_pokemon) {
             const velocidade = data.stats.find(s => s.stat.name === "speed").base_stat;
             const ataque_especial = data.stats.find(s => s.stat.name === "special-attack").base_stat;
             const defesa_especial = data.stats.find(s => s.stat.name === "special-defense").base_stat;
-            
             let div = document.createElement("div");
-            div.style.backgroundColor = "white"
-            div.style.width = "20vh"
-            div.style.height = "40vh"
+            div.style.backgroundColor = "rgb(200, 200, 200)"
+            div.style.width = "50vh"
+            div.style.height = "60vh"
             div.style.position = "fixed";
             div.style.top = "50%";
             div.style.left = "50%";
+            let div_imagem = document.createElement("div");
+            div_imagem = `<img src="${data.sprites.other["official-artwork"].front_default}" width="40%" height= "40%">`
+            div.innerHTML = div_imagem
+            div.style.transform = "translate(-50%, -50%)";
+            div.style.textAlign = "center"
      
             document.body.appendChild(div)
 
