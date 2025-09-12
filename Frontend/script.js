@@ -113,6 +113,8 @@ function clicou_no_pokemon(nome_pokemon) {
             const velocidade = data.stats.find(s => s.stat.name === "speed").base_stat;
             const ataque_especial = data.stats.find(s => s.stat.name === "special-attack").base_stat;
             const defesa_especial = data.stats.find(s => s.stat.name === "special-defense").base_stat;
+            let nome = nome_pokemon
+            nome = nome[0].toUpperCase() + nome.slice(1)
             let div = document.createElement("div");
             div.style.backgroundColor = "rgb(200, 200, 200)"
             div.style.width = "50vh"
@@ -137,7 +139,7 @@ function clicou_no_pokemon(nome_pokemon) {
             div.style.borderRadius = "2vh"
 
             let titulo_status = document.createElement("h1")
-            titulo_status.innerHTML = `${nome_pokemon}`
+            titulo_status.innerHTML = `${nome}`
 
             div.appendChild(titulo_status)
 
