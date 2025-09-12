@@ -4,6 +4,7 @@ function pesquisa_pokemon(event) {
     event.preventDefault();
 
     let nome_pokemon = event.target.nome_pokemon.value.toLowerCase();
+    
     const div_pokemon = document.getElementById("pokemons_div");
 
 
@@ -33,7 +34,9 @@ function pesquisa_pokemon(event) {
             div.addEventListener("mouseleave", function() {
                 div.style.transform = "translateY(0)";
             });
-            div.innerHTML = `<h4><img src="${data.sprites.other["official-artwork"].front_default}" width="60%" height="60%"></h4> <br> <h5 style="font-size: 2vh;"> #${data.id} <br> ${data.name}</h5>`;
+            let nome = data.name
+            nome = nome[0].toUpperCase() + nome.slice(1)
+            div.innerHTML = `<h4><img src="${data.sprites.other["official-artwork"].front_default}" width="60%" height="60%"></h4> <br> <h5 style="font-size: 2vh;"> #${data.id} <br> ${nome}</h5>`;
             div_pokemon.appendChild(div);
 
         })
@@ -75,11 +78,12 @@ function carregar_todos_pokemons() {
                     .then(response => response.json())
                 
                     .then(data => {
-
+                        let pokemon_nome = pokemon.name
+                        nome_pokemon  = pokemon_nome[0].toUpperCase() + pokemon_nome.slice(1)
                         /* div.textContent = data.sprites.front_default //Escreve dentro da div
                         div_pokemon.appendChild(div) //Adiciona dentro da div princiapl */
                         div.innerHTML = `<h4><img src="${data.sprites.other["official-artwork"].front_default
-                    }" width="60%" height= "60%"></h4> <br> <h4 style="font-size: 3vh; "> #${data.id} <br> ${pokemon.name}</h4>`;
+                    }" width="60%" height= "60%"></h4> <br> <h4 style="font-size: 3vh; "> #${data.id} <br> ${nome_pokemon}</h4>`;
                         div.addEventListener("click", function() {
                             clicou_no_pokemon(pokemon.name)
                         })
@@ -117,11 +121,28 @@ function clicou_no_pokemon(nome_pokemon) {
             div.style.top = "50%";
             div.style.left = "50%";
             let div_imagem = document.createElement("div");
-            div_imagem = `<img src="${data.sprites.other["official-artwork"].front_default}" width="40%" height= "40%">`
-            div.innerHTML = div_imagem
+            
+            div_imagem.style.backgroundImage = "url('Images/fundo_escolha.jpg')"
+            let imagem_do_pokemon = document.createElement("img")
+            imagem_do_pokemon.src = data.sprites.other["official-artwork"].front_default
+            imagem_do_pokemon.style.width = "40%"
+            imagem_do_pokemon.style.height = "40%"
+            //div_imagem = `<img src="${data.sprites.other["official-artwork"].front_default}" width="40%" height= "40%">`
+            div_imagem.appendChild(imagem_do_pokemon)
+            div_imagem.style.borderTopLeftRadius = "2vh"
+            div_imagem.style.borderTopRightRadius = "2vh"
+            div.append(div_imagem)
             div.style.transform = "translate(-50%, -50%)";
             div.style.textAlign = "center"
-     
+            div.style.borderRadius = "2vh"
+
+            let titulo_status = document.createElement("h1")
+            titulo_status.innerHTML = `${nome_pokemon}`
+
+            div.appendChild(titulo_status)
+
+            div.style.textAlign = "center"
+
             document.body.appendChild(div)
 
 
