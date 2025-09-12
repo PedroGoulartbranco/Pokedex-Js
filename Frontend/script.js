@@ -123,6 +123,12 @@ function clicou_no_pokemon(nome_pokemon) {
             div.style.top = "50%";
             div.style.left = "50%";
             let div_imagem = document.createElement("div");
+
+            let lista_tipos = []
+
+            for (let letra of tipos) {
+                console.log(letra)
+            }
             
             div_imagem.style.backgroundImage = "url('Images/fundo_escolha.jpg')"
             let imagem_do_pokemon = document.createElement("img")
@@ -141,6 +147,8 @@ function clicou_no_pokemon(nome_pokemon) {
             let titulo_status = document.createElement("h1")
             titulo_status.innerHTML = `${nome}`
 
+
+            
             div.appendChild(titulo_status)
 
             div.style.textAlign = "center"
