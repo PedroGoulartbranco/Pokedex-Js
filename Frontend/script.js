@@ -158,7 +158,7 @@ function clicou_no_pokemon(nome_pokemon) {
             
             let botao_fechar = document.createElement("button");
             botao_fechar.className = "btn btn-danger";
-            botao_fechar.innerHTML = "X"
+            botao_fechar.innerHTML = `x`
             botao_fechar.style.position = "absolute";
             botao_fechar.style.top = "1vh";
             botao_fechar.style.right = "1vh";
