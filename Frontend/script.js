@@ -38,6 +38,9 @@ function pesquisa_pokemon(event) {
             nome = nome[0].toUpperCase() + nome.slice(1)
             div.innerHTML = `<h4><img src="${data.sprites.other["official-artwork"].front_default}" width="60%" height="60%"></h4> <br> <h5 style="font-size: 2vh;"> #${data.id} <br> ${nome}</h5>`;
             div_pokemon.appendChild(div);
+            div_pokemon.addEventListener("click", () => {
+                clicou_no_pokemon(nome)
+            })
 
         })
     
@@ -123,6 +126,7 @@ function clicou_no_pokemon(nome_pokemon) {
             div.style.top = "50%";
             div.style.left = "50%";
             let div_imagem = document.createElement("div");
+            let div_informacoes_conteudo = document.createElement("div");
 
             let lista_tipos = []
 
@@ -144,12 +148,31 @@ function clicou_no_pokemon(nome_pokemon) {
             div.style.textAlign = "center"
             div.style.borderRadius = "2vh"
 
+
+
             let titulo_status = document.createElement("h1")
             titulo_status.innerHTML = `${nome}`
 
+            div_informacoes_conteudo.innerHTML = `<hr> <h5>Tipo/s: ${tipos}<br>Vida: ${vida}<br>Ataque: ${ataque}<br>Defesa: ${defesa}
+            <br>Velocidade: ${velocidade}<br>Ataque Especial: ${ataque_especial}<br>Defesa Especial: ${defesa_especial}</h5>`
+            
+            let botao_fechar = document.createElement("button");
+            botao_fechar.className = "btn btn-danger";
+            botao_fechar.innerHTML = "X"
+            botao_fechar.style.position = "absolute";
+            botao_fechar.style.top = "1vh";
+            botao_fechar.style.right = "1vh";
 
             
+
+            botao_fechar.addEventListener("click", () => {
+                div.remove();
+            })
+
+            div.append(botao_fechar);
+
             div.appendChild(titulo_status)
+            div.appendChild(div_informacoes_conteudo)
 
             div.style.textAlign = "center"
 
