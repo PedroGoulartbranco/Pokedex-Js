@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
-    <link rel="shortcut icon" href="Images/pokebola.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="Frontend/Images/pokebola.png" type="image/x-icon">
+    <link rel="stylesheet" href="Frontend/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
@@ -15,14 +15,14 @@
             <form class="mb-3" onsubmit="pesquisa_pokemon(event)">
                 <input type="text" class="form-control" id="nome_pokemon" placeholder="Digite o nome do Pokemon" oninput="pesquisa_pokemon(event)">
                 <button type="submit" class="btn btn-primary">Pesquisar</button>
-                <button type="submit" class="btn btn-warning"><img src="Images/atualizar.png" alt="" onclick="reiniciar_pagina()"></button>
+                <button type="submit" class="btn btn-warning"><img src="Frontend/Images/atualizar.png" alt="" onclick="reiniciar_pagina()"></button>
             </form>
         </div>
     </div>
     <div id="pokemons_div">
 
     </div>
-    <script src="script.js"></script>
+    <script src="Frontend/script.js"></script>
 </body>
 
 </html>

@@ -170,7 +170,7 @@ function clicou_no_pokemon(nome_pokemon) {
                 console.log(letra)
             }
             
-            div_imagem.style.backgroundImage = "url('Images/fundo_escolha.jpg')"
+            div_imagem.style.backgroundImage = "url('Frontend/Images/fundo_escolha.jpg')"
             let imagem_do_pokemon = document.createElement("img")
             imagem_do_pokemon.src = data.sprites.other["official-artwork"].front_default
             imagem_do_pokemon.style.width = "40%"
