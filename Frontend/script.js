@@ -1,5 +1,12 @@
 let lista_todos_pokemons = []
 
+function reiniciar_pagina() {
+    let caixa_texto = document.getElementById("nome_pokemon");
+    caixa_texto.value = "";
+    location.reload();
+
+}
+
 function pesquisa_pokemon(event) {
     event.preventDefault();
 
@@ -102,6 +109,28 @@ function carregar_todos_pokemons() {
 }
 
 
+const dicionario_cores = {
+    normal: "#A8A77A",
+    fire: "#EE8130",
+    water: "#6390F0",
+    electric: "#F7D02C",
+    grass: "#7AC74C",
+    ice: "#96D9D6",
+    fighting: "#C22E28",
+    poison: "#A33EA1",
+    ground: "#E2BF65",
+    flying: "#A98FF3",
+    psychic: "#F95587",
+    bug: "#A6B91A",
+    rock: "#B6A136",
+    ghost: "#735797",
+    dragon: "#6F35FC",
+    dark: "#705746",
+    steel: "#B7B7CE",
+    fairy: "#D685AD"
+  };
+
+
 
 function clicou_no_pokemon(nome_pokemon) {
     fetch(`https://pokeapi.co/api/v2/pokemon/${nome_pokemon}`)
@@ -109,7 +138,14 @@ function clicou_no_pokemon(nome_pokemon) {
         .then(response => response.json())
     
         .then(data => {
+            let ver_se_ja_existe = document.getElementById("div_pesquisou");
+
+            if (ver_se_ja_existe) {
+                ver_se_ja_existe.remove()
+            }
+
             const tipos = data.types.map(t => t.type.name).join(", ");
+            const tipos_para_cor = data.types.map(t => t.type.name);
             const vida = data.stats.find(s => s.stat.name === "hp").base_stat;
             const ataque = data.stats.find(s => s.stat.name === "attack").base_stat;
             const defesa = data.stats.find(s => s.stat.name === "defense").base_stat;
@@ -119,7 +155,7 @@ function clicou_no_pokemon(nome_pokemon) {
             let nome = nome_pokemon
             nome = nome[0].toUpperCase() + nome.slice(1)
             let div = document.createElement("div");
-            div.style.backgroundColor = "rgb(200, 200, 200)"
+            div.style.backgroundColor = dicionario_cores[tipos_para_cor[0]]
             div.style.width = "50vh"
             div.style.height = "60vh"
             div.style.position = "fixed";
@@ -158,7 +194,7 @@ function clicou_no_pokemon(nome_pokemon) {
             
             let botao_fechar = document.createElement("button");
             botao_fechar.className = "btn btn-danger";
-            botao_fechar.innerHTML = `x`
+            botao_fechar.innerHTML = `X`
             botao_fechar.style.position = "absolute";
             botao_fechar.style.top = "1vh";
             botao_fechar.style.right = "1vh";
@@ -168,7 +204,7 @@ function clicou_no_pokemon(nome_pokemon) {
             botao_fechar.addEventListener("click", () => {
                 div.remove();
             })
-
+            div.id = "div_pesquisou"
             div.append(botao_fechar);
 
             div.appendChild(titulo_status)
